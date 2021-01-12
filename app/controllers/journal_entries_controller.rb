@@ -29,7 +29,7 @@ class JournalEntriesController < ApplicationController
     private
 
     def journal_entry_params
-        params.permit(:file, :child_id)
+        params.permit(:file, :title, :clip, :thumbnail, :child_id)
     end
 
 end

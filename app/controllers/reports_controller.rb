@@ -9,7 +9,10 @@ class ReportsController < ApplicationController
         render json: report
     end
     def create
-        report = Report.create!(report_params)
+        report = Report.new(report_params)
+        parent = Parent.find(params[:id])
+        if report.save
+            ParentMailer.sentiment_report(parent).deliver_now
         render json: report
     end
     
@@ -28,7 +31,7 @@ class ReportsController < ApplicationController
     private
 
     def report_params
-        params.permit(:email, :report_id)
+        params.permit(:file, :title, :doc, :journal_entry_id)
     end
 
 end
