@@ -1,4 +1,5 @@
 class ChildrenController < ApplicationController
+    skip_before_action :authorized, only: [:create]
     def index 
         children = Child.all
         render json: children
@@ -8,10 +9,12 @@ class ChildrenController < ApplicationController
         child = Child.find(params[:id])
         render json: child
     end
+
     def create
         child = Child.create!(child_params)
         if child.valid?
-            render json: {user: ChildSerializer.new(child)}, status: :created
+            @token = encode_token(child_id: child.id)
+            render json: {child: ChildSerializer.new(child), jwt: @token}, status: :created
         else 
             render json: {error: "failed to create child"}, status: :not_acceptable
         end
