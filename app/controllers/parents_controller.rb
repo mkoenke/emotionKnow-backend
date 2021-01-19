@@ -1,4 +1,5 @@
 class ParentsController < ApplicationController
+    skip_before_action :authorized, only: [:create]
     def index 
         parents = Parent.all
         render json: parents
