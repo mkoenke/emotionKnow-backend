@@ -9,9 +9,10 @@ class ParentsController < ApplicationController
         render json: parent
     end
     def create
-        parent = Parent.new(parent_params)
-        if parent.save 
-            ParentMailer.welcome_email(parent).deliver_now
+        parent = Parent.create(parent_params)
+        # if parent.save 
+        #     ParentMailer.welcome_email(parent).deliver_now
+        # end 
         render json: parent
     end
     
@@ -30,7 +31,7 @@ class ParentsController < ApplicationController
     private
 
     def parent_params
-        params.permit(:email, :report_id)
+        params.require(:parent).permit(:email)
     end
 
 end

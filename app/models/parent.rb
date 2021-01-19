@@ -1,4 +1,4 @@
 class Parent < ApplicationRecord
     has_many :children
-    belongs_to :report
+    has_many :reports
 end

@@ -1,3 +1,3 @@
 class ReportSerializer < ActiveModel::Serializer
-  attributes :id, :title, :file
+  attributes :id, :title, :journal_entry
 end

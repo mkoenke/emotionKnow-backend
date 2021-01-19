@@ -38,14 +38,14 @@ ActiveRecord::Schema.define(version: 2021_01_12_131643) do
 
   create_table "children", force: :cascade do |t|
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
+    t.string "image"
     t.integer "parent_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "journal_entries", force: :cascade do |t|
-    t.string "file"
     t.string "title"
     t.integer "child_id"
     t.datetime "created_at", precision: 6, null: false
@@ -54,15 +54,14 @@ ActiveRecord::Schema.define(version: 2021_01_12_131643) do
 
   create_table "parents", force: :cascade do |t|
     t.string "email"
-    t.integer "report_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "reports", force: :cascade do |t|
-    t.string "file"
     t.string "title"
     t.integer "journal_entry_id"
+    t.integer "parent_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -16,14 +16,14 @@ Report.destroy_all
 puts "destroying reports"
 
 parent = Parent.create!(email: "mkoenke@sas.upenn.edu")
-# report can not be seeded bc its not created
+
 puts "Parent seeded"
 
-child = Child.create!(username: "Angelina", password: "1234", parent_id: parent.id)
+child = Child.create!(username: "Angelina", password_digest: BCrypt::Password.create("1234"), image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.1YM53mG10H_U25iPjop83QHaEo%26pid%3DApi&f=1", parent_id: parent.id)
 puts "Child seeded"
 
-journal_entry = JournalEntry.create!(title: "Day 1", file: "journal.mp4", child_id: child.id)
+journal_entry = JournalEntry.create!(title: "Day 1", child_id: child.id)
 puts "Journal seeded"
 
-report = Report.create!(title: "Day 1", file: "report.pdf", journal_entry_id: journal_entry.id)
+report = Report.create!(title: "Day 1", journal_entry_id: journal_entry.id, parent_id: parent.id)
 puts "Report seeded"

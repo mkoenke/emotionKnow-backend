@@ -1,3 +1,4 @@
 class JournalEntrySerializer < ActiveModel::Serializer
-  attributes :id, :title, :file
+  attributes :id, :title
+
 end

@@ -10,7 +10,11 @@ class ChildrenController < ApplicationController
     end
     def create
         child = Child.create!(child_params)
-        render json: child
+        if child.valid?
+            render json: {user: ChildSerializer.new(child)}, status: :created
+        else 
+            render json: {error: "failed to create child"}, status: :not_acceptable
+        end
     end
     
     def destroy
@@ -28,7 +32,7 @@ class ChildrenController < ApplicationController
     private
 
     def child_params
-        params.permit(:username, :password, :parent_id)
+        params.permit(:username, :password, :image, :parent_id)
     end
 
 end

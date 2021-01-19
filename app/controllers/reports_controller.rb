@@ -13,6 +13,7 @@ class ReportsController < ApplicationController
         parent = Parent.find(params[:id])
         if report.save
             ParentMailer.sentiment_report(parent).deliver_now
+        end
         render json: report
     end
     
