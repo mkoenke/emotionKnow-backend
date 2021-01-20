@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2021_01_12_131643) do
 
   create_table "journal_entries", force: :cascade do |t|
     t.string "title"
+    t.string "content"
     t.integer "child_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
