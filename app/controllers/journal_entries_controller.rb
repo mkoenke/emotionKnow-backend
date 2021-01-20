@@ -1,5 +1,5 @@
 class JournalEntriesController < ApplicationController
-    skip_before_action :authorized, only: [:create]
+    skip_before_action :authorized, only: [:create, :destroy]
     def index
         journal_entries = JournalEntry.all
         render json: journal_entries
