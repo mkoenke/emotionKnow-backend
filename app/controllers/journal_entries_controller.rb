@@ -1,4 +1,5 @@
 class JournalEntriesController < ApplicationController
+    skip_before_action :authorized, only: [:create]
     def index
         journal_entries = JournalEntry.all
         render json: journal_entries
@@ -29,7 +30,7 @@ class JournalEntriesController < ApplicationController
     private
 
     def journal_entry_params
-        params.permit(:file, :title, :clip, :thumbnail, :child_id)
+        params.permit(:file, :title, :content, :clip, :thumbnail, :child_id)
     end
 
 end
