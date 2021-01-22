@@ -25,5 +25,5 @@ puts "Child seeded"
 journal_entry = JournalEntry.create!(title: "Day 1", child_id: child.id, content: "Today was a good day")
 puts "Journal seeded"
 
-report = Report.create!(title: "Day 1", journal_entry_id: journal_entry.id, parent_id: parent.id)
-puts "Report seeded"
+# report = Report.create!(title: "Day 1", journal_entry_id: journal_entry.id, parent_id: parent.id)
+# puts "Report seeded"

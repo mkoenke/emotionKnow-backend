@@ -1,5 +1,5 @@
 class ChildrenController < ApplicationController
-    skip_before_action :authorized, only: [:create]
+    skip_before_action :authorized, only: [:create, :show, :reports]
     def index 
         children = Child.all
         render json: children
@@ -19,6 +19,11 @@ class ChildrenController < ApplicationController
             render json: {error: "failed to create child"}, status: :not_acceptable
         end
     end
+    def reports
+        child = Child.find(params[:id])
+        reports = Report.where(child_id: child.id)
+        puts reports #how do i get this to be json data to be able to fetch it from front end
+    end 
     
     def destroy
         child = Child.find(params[:id])

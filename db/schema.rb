@@ -62,7 +62,14 @@ ActiveRecord::Schema.define(version: 2021_01_12_131643) do
   create_table "reports", force: :cascade do |t|
     t.string "title"
     t.integer "journal_entry_id"
+    t.integer "child_id"
     t.integer "parent_id"
+    t.decimal "anger"
+    t.decimal "disgust"
+    t.decimal "fear"
+    t.decimal "joy"
+    t.decimal "sadness"
+    t.decimal "surprise"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

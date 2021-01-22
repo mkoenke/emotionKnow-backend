@@ -9,11 +9,11 @@ class ReportsController < ApplicationController
         render json: report
     end
     def create
-        report = Report.new(report_params)
-        parent = Parent.find(params[:id])
-        if report.save
-            ParentMailer.sentiment_report(parent).deliver_now
-        end
+        report = Report.create!(report_params)
+        # parent = Parent.find(params[:id])
+        # if report.save
+        #     ParentMailer.sentiment_report(parent).deliver_now
+        # end
         render json: report
     end
     
