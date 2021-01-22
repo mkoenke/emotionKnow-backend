@@ -7,7 +7,7 @@ require 'openssl'
 
 
 class JournalEntriesController < ApplicationController
-    skip_before_action :authorized, only: [:create, :destroy]
+    skip_before_action :authorized_child, :authorized_parent, only: [:create, :destroy]
     def index
         journal_entries = JournalEntry.all
         render json: journal_entries

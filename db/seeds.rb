@@ -15,7 +15,7 @@ puts "destroying journal entries"
 Report.destroy_all
 puts "destroying reports"
 
-parent = Parent.create!(email: "mkoenke@sas.upenn.edu")
+parent = Parent.create!(email: "mkoenke@sas.upenn.edu", password_digest: BCrypt::Password.create("1234"))
 
 puts "Parent seeded"
 

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-    before_action :authorized
+    before_action :authorized_child, :authorized_parent
     
     def encode_token(payload)
         JWT.encode(payload, ENV['jwt_key'])
@@ -27,13 +27,28 @@ class ApplicationController < ActionController::API
           session[:child] = @child
         end
       end
+
+      def current_parent
+        if decoded_token
+          parent_id = decoded_token[0]['parent_id']
+          @parent = Parent.find_by(id: parent_id)
+          session[:parent] = @parent
+        end
+      end 
     
-      def logged_in?
+      def logged_in_child?
         !!current_child
       end
 
-      def authorized
-        render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
+      def logged_in_parent?
+        !!current_parent
+      end
+
+      def authorized_child
+        render json: { message: 'Please log in' }, status: :unauthorized unless logged_in_child?
+      end
+      def authorized_parent
+        render json: { message: 'Please log in' }, status: :unauthorized unless logged_in_parent?
       end
 
 end

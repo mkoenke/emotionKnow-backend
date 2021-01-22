@@ -1,5 +1,5 @@
 class ParentsController < ApplicationController
-    skip_before_action :authorized, only: [:create]
+    skip_before_action :authorized_child, :authorized_parent, only: [:create]
     def index 
         parents = Parent.all
         render json: parents
@@ -10,10 +10,16 @@ class ParentsController < ApplicationController
         render json: parent
     end
     def create
-        parent = Parent.create(parent_params)
+        parent = Parent.create!(parent_params)
         # if parent.save 
         #     ParentMailer.welcome_email(parent).deliver_now
         # end 
+        if parent.valid?
+            @token = encode_token(parent_id: parent.id)
+            render json: {child: ParentSerializer.new(parent), jwt: @token}, status: :created
+        else 
+            render json: {error: "failed to create parent"}, status: :not_acceptable
+        end
         render json: parent
     end
     
@@ -32,7 +38,7 @@ class ParentsController < ApplicationController
     private
 
     def parent_params
-        params.require(:parent).permit(:email)
+        params.require(:parent).permit(:email, :password)
     end
 
 end
