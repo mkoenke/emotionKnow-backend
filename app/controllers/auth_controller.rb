@@ -12,7 +12,6 @@ class AuthController < ApplicationController
     end
     
     def create_parent
-      puts "here"
       @parent = Parent.find_by(email: parent_login_params[:email])
       puts @parent
       if @parent && @parent.authenticate(parent_login_params[:password])
