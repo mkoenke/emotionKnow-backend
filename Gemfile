@@ -47,3 +47,5 @@ gem "jwt", "~> 2.2"
 gem "figaro"
 gem "rest-client"
 gem "json"
+gem 'ibm_watson', '~> 1.3'
+gem 'aws-sdk-s3', require: false
