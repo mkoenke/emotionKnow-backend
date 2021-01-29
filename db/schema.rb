@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_22_200243) do
+ActiveRecord::Schema.define(version: 2021_01_29_161903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,29 @@ ActiveRecord::Schema.define(version: 2021_01_22_200243) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "audio_entries", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.integer "child_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "audio_reports", force: :cascade do |t|
+    t.string "title"
+    t.integer "audio_entry_id"
+    t.integer "child_id"
+    t.integer "parent_id"
+    t.decimal "anger"
+    t.decimal "disgust"
+    t.decimal "fear"
+    t.decimal "joy"
+    t.decimal "sadness"
+    t.decimal "surprise"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "children", force: :cascade do |t|
@@ -63,6 +86,28 @@ ActiveRecord::Schema.define(version: 2021_01_22_200243) do
   create_table "reports", force: :cascade do |t|
     t.string "title"
     t.integer "journal_entry_id"
+    t.integer "child_id"
+    t.integer "parent_id"
+    t.decimal "anger"
+    t.decimal "disgust"
+    t.decimal "fear"
+    t.decimal "joy"
+    t.decimal "sadness"
+    t.decimal "surprise"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "video_entries", force: :cascade do |t|
+    t.string "title"
+    t.integer "child_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "video_reports", force: :cascade do |t|
+    t.string "title"
+    t.integer "video_entry_id"
     t.integer "child_id"
     t.integer "parent_id"
     t.decimal "anger"

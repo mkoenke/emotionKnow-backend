@@ -32,7 +32,7 @@ class ReportsController < ApplicationController
     private
 
     def report_params
-        params.permit(:file, :title, :doc, :journal_entry_id)
+        params.permit(:title, :content, :journal_entry_id, :parent_id, :child_id)
     end
 
 end

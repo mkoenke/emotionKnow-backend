@@ -1,5 +1,5 @@
 class ReportSerializer < ActiveModel::Serializer
-  attributes :id, :title, :journal_entry_id, :parent_id, :excited, :fear, :angry, :happy, :sad, :bored
+  attributes :id, :title, :journal_entry_id, :child_id, :parent_id, :excited, :anger, :disgust, :fear, :joy, :sadness, :surprise
 end
 
 
