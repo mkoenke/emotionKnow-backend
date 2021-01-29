@@ -4,9 +4,7 @@ require 'openssl'
 # require 'rest-client'
 # require 'open-uri'
 # require 'json'
-# require "ibm_watson/authenticators"
-# require "ibm_watson/speech_to_text_v1"
-# include IBMWatson
+
 
 
 
