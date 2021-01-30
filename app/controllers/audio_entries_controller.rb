@@ -25,6 +25,7 @@ class AudioEntriesController < ApplicationController
         attached_clip = audio_entry.clip.attach(params[:clip])
        
        clip_url = url_for(audio_entry.clip)
+       puts clip_url
        
 
         # url = Rails.application.routes.url_helpers.rails_blob_path(attached_clip, only_path: true)
