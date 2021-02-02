@@ -24,11 +24,23 @@
             attached_video = video_entry.video.attach(params[:video])
            
            video_url = url_for(video_entry.video)
+           puts video_url
            
-    
-            # url = Rails.application.routes.url_helpers.rails_blob_path(attached_video, only_path: true)
-            # render json: {message: "Attached to File", url: url, journal: video_entry 
-    
+           url = URI("https://api.kairos.com/v2/media?source=#{video_url}")
+        #    URL NEEDS TO BE EXTERNAL FROM AWS OR THE LIKE 
+           https = Net::HTTP.new(url.host, url.port);
+           https.use_ssl = true
+           
+           request = Net::HTTP::Post.new(url)
+           request["Content-Type"] = "application/x-www-form-urlencoded"
+           request["app_id"] = "f8340296"
+           request["app_key"] = "2d1ef419fb0e4de99b91b23835a9f2f1"
+           form_data = []
+           request.set_form form_data, 'multipart/form-data'
+           response = https.request(request)
+           puts "RESPONSE HERE:"
+           puts response.read_body
+           
             # url = URI("https://twinword-emotion-analysis-v1.p.rapidapi.com/analyze/")
     
             # http = Net::HTTP.new(url.host, url.port)

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  get "children/:id/reports", to: "children#reports"
   resources :video_reports
   resources :audio_reports
   resources :video_entries
